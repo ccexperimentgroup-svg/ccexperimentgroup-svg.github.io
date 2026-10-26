@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghost Forest</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #141414;
+    }
+    canvas {
+      touch-action: none; /* a finger on the canvas never scrolls the page */
+    }
+  </style>
+
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/p5.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.9.4/lib/addons/p5.sound.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/p5-phone@v1.16.0/dist/p5-phone.min.js"></script>
+
+  <script>
+    if (location.protocol === 'https:' || location.protocol === 'blob:') {
+      addEventListener('load', function () { showDesktopQr({rememberDismiss: false, size: window.innerWidth * 0.9, position: 'center'}); });
+    }
+  </script>
+  
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <meta charset="utf-8" />
+</head>
+<body>
+  <script src="Happy.js"></script>
+  <script src="Sad.js"></script>
+  <script src="Angry.js"></script>
+  <script src="Scary.js"></script>
+  <script src="sketch.js"></script>
+</body>
+</html>
