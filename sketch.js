@@ -98,6 +98,9 @@ function delayTimer() {
   delayTimeout = setTimeout(mainGameName, SOUND_TIME * (1 + random()));
 }
 
+let FADE_TIME = SOUND_TIME / 2;
+let fadeTimer = 0;
+
 function mainGameName() {
   clearTimeout(delayTimeout);
   soundFile.onended(delayTimer);
@@ -112,7 +115,9 @@ function mainGameName() {
   // if (backwards) playBackRate *= -1;
   // print(playBackRate);
   soundFile.rate(playBackRate);
-  soundFile.setVolume(100);
+  DEBUG_MODE && print("playing name");
+  fadeTimer = FADE_TIME * 0.1; // Start at 10% max volume.
+  fadeIn = true;
   soundFile.play();
 }
 
@@ -294,7 +299,7 @@ function sayName() {
 function maxSoundOKTap() {
   DEBUG_MODE && print("maxSoundOKTap");
 
-  outputVolume(100);
+  outputVolume(0.99);
   
   currentScreen = sayName;
   currentScreen();
@@ -404,10 +409,30 @@ async function qrOKTap() {
 */
 
 let recordArmed = false;
+let fadeIn = false;
 
 function draw() {
   // If currentEmotion is a valid function, call it.
   currentEmotion && currentEmotion.draw();
+
+  // Sound fade.
+  if (fadeIn) {
+    fadeTimer += deltaTime;
+  } else {
+    fadeTimer -= deltaTime;
+  }
+
+  let fadeVolume = fadeTimer / FADE_TIME;
+
+  if (fadeIn && fadeVolume > 0)  {
+    DEBUG_MODE && print(`in ${fadeVolume}`);
+    fadeIn = fadeVolume <= 1.0;
+  } else {
+    DEBUG_MODE && print(`out ${fadeVolume}`);
+  }
+
+  // Only fade to 10% max volume.
+  soundFile && soundFile.setVolume(constrain(fadeVolume, 0.1, 1.0));
 
   if (soundEnabled && !sayNameSetupComplete) {
     if (mic && mic.enabled) {
