@@ -311,7 +311,8 @@ function sayName() {
 function maxSoundOKTap() {
   DEBUG_MODE && print("maxSoundOKTap");
 
-  outputVolume(0.99);
+  let maxVol = 100; // 0.99;
+  outputVolume(maxVol);
   
   currentScreen = sayName;
   currentScreen();
