@@ -8,7 +8,7 @@ let canvas;
 let mainOKButton;
 
 // Phone setting management.
-let soundEnabled = true;
+let soundEnabled = false;
 let wakeLock;
 let mic;
 let recorder;
@@ -85,7 +85,7 @@ function setup() {
   //   }
   // };
 
-  lockGestures();
+  // lockGestures();
   
   // Start with QR.
   currentScreen = disableSleep;
