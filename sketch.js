@@ -8,7 +8,7 @@ let canvas;
 let mainOKButton;
 
 // Phone setting management.
-let soundEnabled = false;
+let soundEnabled = true;
 let wakeLock;
 let mic;
 let recorder;
