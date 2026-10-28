@@ -1,5 +1,5 @@
 // DEBUG settings.
-let DEBUG_MODE = true;
+let DEBUG_MODE = false;
 let FORCE_EMOTION;
 let FAST_EMOTION = false;
 
@@ -36,6 +36,16 @@ let qrSetupComplete = true;
 // Is all setup complete?
 let setupComplete = false;
 
+function mouseReleased() {
+  if (!soundEnabled) {
+    userStartAudio();
+    DEBUG_MODE && print("user sound initialized");
+    mic.start();
+    soundEnabled = true;
+    recordArmed = true;
+  }
+};
+
 function setup() {
   DEBUG_MODE && showDebug();
   
@@ -65,15 +75,17 @@ function setup() {
   angleMode(DEGREES);
   enableGyroTap('Tap to start');
 
-  window.mouseReleased = function() {
-    if (!soundEnabled) {
-      userStartAudio();
-      DEBUG_MODE && print("user sound initialized");
-      mic.start();
-      soundEnabled = true;
-      recordArmed = true;
-    }
-  };
+  // window.mouseReleased = function() {
+  //   if (!soundEnabled) {
+  //     userStartAudio();
+  //     DEBUG_MODE && print("user sound initialized");
+  //     mic.start();
+  //     soundEnabled = true;
+  //     recordArmed = true;
+  //   }
+  // };
+
+  lockGestures();
   
   // Start with QR.
   currentScreen = disableSleep;
