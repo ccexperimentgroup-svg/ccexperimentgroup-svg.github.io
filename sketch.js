@@ -47,7 +47,7 @@ function mouseReleased() {
 };
 
 function setup() {
-  DEBUG_MODE && showDebug();
+  // DEBUG_MODE && showDebug();
   
   // Full screen on phones and laptops (can't use `fullscreen()`, so do it oldsk00l):
   canvas = createCanvas(windowWidth, windowHeight);
