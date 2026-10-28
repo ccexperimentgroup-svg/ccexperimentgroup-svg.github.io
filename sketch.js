@@ -428,23 +428,24 @@ function draw() {
   currentEmotion && currentEmotion.draw();
 
   // Sound fade.
-  if (fadeIn) {
-    fadeTimer += deltaTime;
-  } else {
-    fadeTimer -= deltaTime;
-  }
+  // if (fadeIn) {
+  //   fadeTimer += deltaTime;
+  // } else {
+  //   fadeTimer -= deltaTime;
+  // }
 
-  let fadeVolume = fadeTimer / FADE_TIME;
+  // let fadeVolume = fadeTimer / FADE_TIME;
 
-  if (fadeIn && fadeVolume > 0)  {
-    DEBUG_MODE && print(`in ${fadeVolume}`);
-    fadeIn = fadeVolume <= 1.0;
-  } else {
-    DEBUG_MODE && print(`out ${fadeVolume}`);
-  }
+  // if (fadeIn && fadeVolume > 0)  {
+  //   DEBUG_MODE && print(`in ${fadeVolume}`);
+  //   fadeIn = fadeVolume <= 1.0;
+  // } else {
+  //   DEBUG_MODE && print(`out ${fadeVolume}`);
+  // }
 
   // Only fade to 10% max volume.
-  soundFile && soundFile.setVolume(constrain(fadeVolume, 0.1, 1.0));
+  let fadeVolume = 100;
+  soundFile && soundFile.setVolume(fadeVolume);//constrain(fadeVolume, 0.1, 1.0));
 
   if (soundEnabled && !sayNameSetupComplete) {
     if (mic && mic.enabled) {
